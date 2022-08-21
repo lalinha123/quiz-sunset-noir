@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&family=Titillium+Web&display=swap');
+
+:root{
+    --verde-claro: #38f778;
+    --vermelho: #f52675;
+    --magenta: #ff3bce;
+    --azul-claro: #6bc4e7;
+    --cinza-claro: #c5c5c5;
+
+    --bg-cor: #150031;
+    --fonte-especial: 'Silkscreen', cursive;
+    --fonte-normal: 'Titillium Web', sans-serif;
+    --sombra: #ff3bce67;
+}
+
+*{
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
+body{
+    background: var(--bg-cor);
+    color: var(--bg-cor);
+    font-family: var(--fonte-normal);
+    font-size: 18px;
+
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    height: inherit;
+
+    margin: auto;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container > *{
+    background-color:white;
+
+    border: none;
+    border-radius: 5px;
+}
+
+.container h1{
+    background-color: initial;
+    color: var(--magenta);
+    font-family: var(--fonte-especial);
+    font-size: 35px;
+    text-align: center;
+
+    width: inherit;
+    border-radius: 0;
+    margin-bottom: 40px;
+}
+
+button{
+    color: var(--bg-cor);
+
+    transition: 0.1s;
+}
+
+button:hover{
+    cursor: pointer;
+    transform: scale(105%);
+    box-shadow: 5px 5px 0 var(--sombra);
+}
+
+button:active{
+    background-color: var(--cinza-claro);
+
+    transform: scale(100%);
+}
+
+#btnComecar, #pergNum, #pergunta, #placar{
+    font-family: var(--fonte-especial);
+}
+
+#btnComecar{
+    font-size: 30px;
+
+    padding: 12px 25px;
+}
+
+#quiz, #placar{
+    width: 25vw;
+    padding: 50px 20px;
+}
+
+#placar{
+    font-size: 22px;
+    text-align: center;
+}
+
+#resultado{
+    font-size: 25px;
+    color: var(--magenta);
+
+    margin-bottom: 40px;
+}
+
+#quiz{
+    height: fit-content;
+}
+
+.c-perg{
+    margin: 0 auto 40px;
+}
+
+#pergNum, #pergunta{
+    font-size: 27px;
+
+    display: inline;
+}
+
+#pergNum{
+    color: var(--magenta);
+
+    margin-right: 10px;
+}
+
+#quiz #c-alternativas > *{
+    background-color: inherit;
+    font-size: 15px;
+    text-align: left;
+
+    width: 95%;
+    border: 1px solid var(--bg-cor);
+    border-radius: 3px;
+    margin: 15px auto;
+    padding: 8px 15px;
+
+    display: block;
+}
+
+#quiz #c-alternativas > *.certo{
+    background-color: var(--verde-claro)
+}
+
+#quiz #c-alternativas > *.errado{
+    background-color: var(--vermelho)
+}

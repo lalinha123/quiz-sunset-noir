@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Quiz da Sunset Noir :D</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz da Sunset Noir!!</h2>
+
+        <button type="button" id="btnComecar" onclick="inicia(this.id)">Começar</button>
+
+        <form id="quiz" style="display: none">
+            <div class="c-perg">
+                <p id="pergNum"></p><p id="pergunta">Pergunta</p>
+            </div>
+            
+            <div id="c-alternativas">
+                <button type="button" class="alternativa">Alternativa 1</button>
+                <button type="button" class="alternativa">Alternativa 2</button>
+                <button type="button" class="alternativa">Alternativa 3</button>
+                <button type="button" class="alternativa">Alternativa 4</button>
+            </div>
+        </form>
+
+        <div id="placar" style="display: none;">
+            <p id="resultado"></p>
+            <p id="acertos"></p>
+            <p id="erros"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
