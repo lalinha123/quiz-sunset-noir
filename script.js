@@ -1,5 +1,5 @@
 class Pergunta{
-    constructor(pergunta, resposta, alt1, alt2 = '', alt3 = ''){
+    constructor(pergunta, resposta, alt1, alt2, alt3){
         this._pergunta = pergunta;
         this._alternativas = {
             resposta,
@@ -19,18 +19,6 @@ class Pergunta{
 
     get alternativas(){
         return this._alternativas;
-    }
-
-    get alt1(){
-        return this._alt1;
-    }
-
-    get alt2(){
-        return this._alt2;
-    }
-
-    get alt3(){
-        return this._alt3;
     }
 }
 
@@ -64,22 +52,22 @@ let perguntaAtual;
 const random = (array) => {
     const arrayAlt = [];
 
-    for (i = 0; i < array.length; i++) {
-        arrayAlt.push(i);
+    for (let idx in array) {
+        arrayAlt.push(idx);
     }
 
     arrayAlt.sort(() => Math.random() - 0.5);
 
-    for (i = 0; i < arrayAlt.length; i++) {
-        arrayAlt[i] = array[arrayAlt[i]];
+    for (let idx in arrayAlt) {
+        arrayAlt[idx] = array[arrayAlt[idx]];
     }
 
     return arrayAlt;
 }
 
 const randomizaAlt = () => {
-    const { resposta, alt1, alt2, alt3 } = perguntaAtual.alternativas;
-    const listaKeyObj = [resposta, alt1, alt2, alt3];
+    const obj = perguntaAtual.alternativas;
+    const listaKeyObj = [ obj.resposta, obj.alt1, obj.alt2, obj.alt3 ];
 
     const lista = random(listaKeyObj);
 
@@ -89,24 +77,22 @@ const randomizaAlt = () => {
 };
 
 const verificaAlt = (alt) => {
-    const acertou = (certo = true) => {
-        if(certo){
-            acertos++;
-            alt.classList.add('certo');
-        }
+    const acertou = alt.textContent === perguntaAtual.alternativas.resposta ? true : false;
 
-        else{
-            erros++;
-            alt.classList.add('errado');
-        }
-
-        setTimeout(() => {
-            pergNum++;
-            pergNum > listaPerg.length ? termina() : updateQuiz();
-        }, 1000);
+    if(acertou){
+        acertos++;
+        alt.classList.add('certo');
     }
 
-    alt.textContent === perguntaAtual.alternativas.resposta ? acertou() : acertou(false);
+    else{
+        erros++;
+        alt.classList.add('errado');
+    }
+
+    setTimeout(() => {
+        pergNum++;
+        pergNum > listaPerg.length ? termina() : updateQuiz();
+    }, 1000);
 };
 
 const updateQuiz = () => {
@@ -126,10 +112,6 @@ const updateQuiz = () => {
 };
 
 const inicia = (btnId) => {
-    pergNum = 1;
-    acertos = 0;
-    erros = 0;
-
     document.querySelector(`#${btnId}`).style.display = 'none';
     quiz.style.display = 'block';
 
@@ -146,13 +128,7 @@ const inicia = (btnId) => {
 const termina = () => {
     quiz.style.display = 'none';
 
-    if(acertos > listaPerg.length / 2){
-        resultado = 'Parabéns!! Você é foda :D'
-    }
-
-    else{
-        resultado = 'Seu bananão >:('
-    }
+    const resultado = acertos > listaPerg.length / 2 ? 'Parabéns!! Você é foda :D' : 'Seu bananão >:(';
 
     document.querySelector('#resultado').textContent = resultado;
     document.querySelector('#acertos').textContent = `Acertos: ${acertos}`;
